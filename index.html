@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Sueño del Pibe ⚽</title>
+
+  <!-- Fuente pixel art -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 1: INICIO                                            -->
+  <!-- ============================================================= -->
+  <div id="pantalla-inicio" class="pantalla activa">
+    <div class="inicio-contenedor">
+
+      <button id="btn-musica" class="btn-musica" title="Activar/desactivar música">🎵</button>
+
+      <div class="icono-pixel icono-gigante">⚽</div>
+
+      <h1 class="titulo-principal">EL SUEÑO<br>DEL PIBE</h1>
+      <p class="subtitulo">De la canchita de barrio a la gloria eterna</p>
+
+      <div class="caja-inicio">
+        <label for="input-nombre">¿Cómo se llama tu pibe?</label>
+        <input type="text" id="input-nombre" placeholder="Julián" maxlength="15">
+
+        <label for="input-apodo">¿Y el apodo?</label>
+        <input type="text" id="input-apodo" placeholder="El Pulguita" maxlength="15">
+
+        <label>¿En qué puesto juega?</label>
+        <div class="selector-puesto">
+          <div class="puesto-card" data-puesto="Arquero">
+            <div class="icono-pixel icono-mediano">🧤</div>
+            <div class="puesto-nombre">ARQUERO</div>
+            <div class="puesto-desc">Ataja penales y salva partidos</div>
+          </div>
+          <div class="puesto-card" data-puesto="Defensor">
+            <div class="icono-pixel icono-mediano">🛡️</div>
+            <div class="puesto-nombre">DEFENSOR</div>
+            <div class="puesto-desc">Marca, roba y saca del fondo</div>
+          </div>
+          <div class="puesto-card" data-puesto="Mediocampista">
+            <div class="icono-pixel icono-mediano">⚙️</div>
+            <div class="puesto-nombre">MEDIO</div>
+            <div class="puesto-desc">Maneja la pelota y arma juego</div>
+          </div>
+          <div class="puesto-card" data-puesto="Delantero">
+            <div class="icono-pixel icono-mediano">⚡</div>
+            <div class="puesto-nombre">DELANTERO</div>
+            <div class="puesto-desc">Hace los goles y define partidos</div>
+          </div>
+        </div>
+
+        <button id="btn-empezar" class="boton-principal" disabled>
+          ▶ ARRANCAR LA CARRERA
+        </button>
+        <p class="ayuda-inicio">Elegí un puesto para continuar</p>
+      </div>
+
+      <p class="pie">v4.0 — Pixel Edition</p>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 2: HUB                                               -->
+  <!-- ============================================================= -->
+  <div id="pantalla-hub" class="pantalla">
+
+    <!-- HUD -->
+    <header class="barra-superior">
+      <div class="dato">
+        <span class="etiqueta">PIBE</span>
+        <span id="hud-nombre" class="valor-dato">—</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">PUESTO</span>
+        <span id="hud-puesto" class="valor-dato">—</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">EDAD</span>
+        <span id="hud-edad" class="valor-dato">16</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">CLUB</span>
+        <span id="hud-club" class="valor-dato">—</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">DIVISIÓN</span>
+        <span id="hud-division" class="valor-dato">—</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">TEMP.</span>
+        <span id="hud-temporada" class="valor-dato">1</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">PLATA</span>
+        <span id="hud-plata" class="valor-dato">$0</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">PROM.</span>
+        <span id="hud-promedio" class="valor-dato">—</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">REPUT.</span>
+        <span id="hud-reputacion" class="valor-dato">0</span>
+      </div>
+    </header>
+
+    <main class="hub-contenido">
+
+      <!-- Panel Próximo Partido -->
+      <section class="hub-proximo-partido">
+        <h2 class="titulo-seccion">📅 PRÓXIMO PARTIDO</h2>
+        <div id="hub-proximo-info" class="hub-proximo-info">
+          <p class="vacio">Cargando...</p>
+        </div>
+        <button id="hub-btn-jugar" class="boton-principal boton-grande">
+          ▶ JUGAR PARTIDO
+        </button>
+      </section>
+
+      <!-- Menú de secciones -->
+      <section class="hub-menu">
+        <h2 class="titulo-seccion">SECCIONES</h2>
+        <div class="hub-botones">
+          <button class="hub-btn" data-seccion="torneo">
+            <div class="icono-pixel icono-pequeno">📊</div>
+            <div class="hub-btn-titulo">TORNEO</div>
+            <div class="hub-btn-desc">Tabla y fechas</div>
+          </button>
+          <button class="hub-btn" data-seccion="copa">
+            <div class="icono-pixel icono-pequeno">🏆</div>
+            <div class="hub-btn-titulo">COPA ARGENTINA</div>
+            <div class="hub-btn-desc">Llaves y resultados</div>
+          </button>
+          <button class="hub-btn" data-seccion="entrenamiento">
+            <div class="icono-pixel icono-pequeno">🏋️</div>
+            <div class="hub-btn-titulo">ENTRENAMIENTO</div>
+            <div class="hub-btn-desc">Mejorá tus habilidades</div>
+          </button>
+          <button class="hub-btn" data-seccion="perfil">
+            <div class="icono-pixel icono-pequeno">👤</div>
+            <div class="hub-btn-titulo">PERFIL</div>
+            <div class="hub-btn-desc">Radar, historial y stats</div>
+          </button>
+          <button class="hub-btn" data-seccion="trofeos">
+            <div class="icono-pixel icono-pequeno">🥇</div>
+            <div class="hub-btn-titulo">TROFEOS</div>
+            <div class="hub-btn-desc">Copas y distinciones</div>
+          </button>
+          <button class="hub-btn" data-seccion="mercado">
+            <div class="icono-pixel icono-pequeno">💼</div>
+            <div class="hub-btn-titulo">MERCADO</div>
+            <div class="hub-btn-desc">Ofertas y fichajes</div>
+          </button>
+          <button class="hub-btn" data-seccion="noticias">
+            <div class="icono-pixel icono-pequeno">📰</div>
+            <div class="hub-btn-titulo">NOTICIAS</div>
+            <div class="hub-btn-desc">Prensa y eventos</div>
+          </button>
+          <button class="hub-btn" data-seccion="goleadores">
+            <div class="icono-pixel icono-pequeno">🎯</div>
+            <div class="hub-btn-titulo">GOLEADORES</div>
+            <div class="hub-btn-desc">Tabla de artilleros</div>
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 3: PARTIDO                                           -->
+  <!-- ============================================================= -->
+  <div id="pantalla-partido" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2 id="partido-titulo">PARTIDO</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="partido-contenedor">
+      <div class="partido-marcador">
+        <div class="equipo-local" id="partido-local">—</div>
+        <div class="marcador" id="marcador">0 - 0</div>
+        <div class="equipo-visita" id="partido-visita">—</div>
+      </div>
+
+      <div class="partido-tipo" id="partido-tipo">—</div>
+
+      <div id="narracion" class="narracion"></div>
+
+      <div class="partido-acciones" id="partido-acciones"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 4: TORNEO                                            -->
+  <!-- ============================================================= -->
+  <div id="pantalla-torneo" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>TORNEO</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="torneo-contenedor">
+      <div class="torneo-info" id="torneo-info"></div>
+      <div class="tabla-wrapper">
+        <table class="tabla-posiciones">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>EQUIPO</th>
+              <th>PJ</th>
+              <th>G</th>
+              <th>E</th>
+              <th>P</th>
+              <th>GF</th>
+              <th>GC</th>
+              <th>DIF</th>
+              <th>PTS</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-tabla"></tbody>
+        </table>
+      </div>
+      <div class="torneo-leyenda">
+        <span class="leyenda-item"><span class="leyenda-color leyenda-verde"></span> ASCENSO</span>
+        <span class="leyenda-item"><span class="leyenda-color leyenda-rojo"></span> DESCENSO</span>
+        <span class="leyenda-item"><span class="leyenda-color leyenda-dorado"></span> TU CLUB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 5: COPA                                              -->
+  <!-- ============================================================= -->
+  <div id="pantalla-copa" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>COPA ARGENTINA</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="copa-contenedor">
+      <div class="copa-info" id="copa-info"></div>
+      <div class="copa-bracket" id="copa-bracket"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 6: ENTRENAMIENTO                                     -->
+  <!-- ============================================================= -->
+  <div id="pantalla-entrenamiento" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>ENTRENAMIENTO</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="entrenamiento-contenedor">
+      <div class="entrenamiento-radar">
+        <h3 class="titulo-seccion">RADAR DE HABILIDADES</h3>
+        <div id="radar-contenedor" class="radar-contenedor"></div>
+      </div>
+      <div class="entrenamiento-lista">
+        <h3 class="titulo-seccion">MEJORAR STATS</h3>
+        <p class="ayuda">Cuanto más alto el stat, más caro subirlo.</p>
+        <div id="lista-entrenamiento" class="lista-entrenamiento"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 7: PERFIL                                            -->
+  <!-- ============================================================= -->
+  <div id="pantalla-perfil" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>PERFIL DEL PIBE</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="perfil-contenedor">
+      <div class="perfil-ficha">
+        <div class="perfil-avatar icono-pixel icono-grande">👤</div>
+        <div class="perfil-datos" id="perfil-datos"></div>
+      </div>
+      <div class="perfil-stats">
+        <h3 class="titulo-seccion">HABILIDADES</h3>
+        <div id="perfil-stats-lista" class="perfil-stats-lista"></div>
+      </div>
+      <div class="perfil-historial">
+        <h3 class="titulo-seccion">HISTORIAL</h3>
+        <div id="perfil-historial" class="perfil-historial-lista"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 8: TROFEOS                                           -->
+  <!-- ============================================================= -->
+  <div id="pantalla-trofeos" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>SALA DE TROFEOS</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="trofeos-contenedor">
+      <div class="trofeos-vitrina" id="trofeos-vitrina"></div>
+      <div class="trofeos-distinciones">
+        <h3 class="titulo-seccion">DISTINCIONES</h3>
+        <div id="trofeos-distinciones-lista"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 9: MERCADO                                           -->
+  <!-- ============================================================= -->
+  <div id="pantalla-mercado" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>MERCADO DE PASES</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="mercado-contenedor">
+      <div class="mercado-info" id="mercado-info"></div>
+      <div class="mercado-ofertas" id="mercado-ofertas"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 10: NOTICIAS                                         -->
+  <!-- ============================================================= -->
+  <div id="pantalla-noticias" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>NOTICIAS</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="noticias-contenedor" id="noticias-lista"></div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 11: GOLEADORES                                       -->
+  <!-- ============================================================= -->
+  <div id="pantalla-goleadores" class="pantalla">
+    <header class="barra-volver">
+      <button class="boton-volver" data-volver="hub">◀ VOLVER</button>
+      <h2>TABLA DE GOLEADORES</h2>
+      <span class="espacio-vacio"></span>
+    </header>
+
+    <div class="goleadores-contenedor" id="goleadores-lista"></div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PANTALLA 12: FINAL                                            -->
+  <!-- ============================================================= -->
+  <div id="pantalla-final" class="pantalla">
+    <div class="final-contenedor">
+      <div class="icono-pixel icono-gigante">🏆</div>
+      <h1 class="titulo-principal">FIN<br>DE LA CARRERA</h1>
+      <p id="texto-final" class="subtitulo">—</p>
+      <div id="resumen-final" class="resumen-final"></div>
+      <button id="btn-reiniciar" class="boton-principal">▶ VOLVER A EMPEZAR</button>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- SCRIPTS                                                        -->
+  <!-- ============================================================= -->
+  <script src="juego.js"></script>
+</body>
+</html>
